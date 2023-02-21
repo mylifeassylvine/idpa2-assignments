@@ -61,6 +61,9 @@ Now that your repo (which is still a fork of this repo) is synced, it's time to 
 
 Be descriptive, so it's clear to me what/which assignment I'm merging into the main branch.
 
+## Use your own folder
+In order to keep this repository clean, use/create your own folder (with your name) within your (forked) repository. Also create a folder for every assignment.
+
 ## Extra references
 
 DigitalOcean has a [good guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github), which also digs a little deeper into keeping your fork up-to-date with this repo.
