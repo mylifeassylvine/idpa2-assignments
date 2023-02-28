@@ -67,3 +67,7 @@ In order to keep this repository clean, use/create your own folder (with your na
 ## Extra references
 
 DigitalOcean has a [good guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github), which also digs a little deeper into keeping your fork up-to-date with this repo.
+
+## Assignments / doc folder
+
+The ```doc``` folder will contain markdown files for every assignment.
