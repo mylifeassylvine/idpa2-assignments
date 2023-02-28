@@ -68,6 +68,8 @@ In order to keep this repository clean, use/create your own folder (with your na
 
 DigitalOcean has a [good guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github), which also digs a little deeper into keeping your fork up-to-date with this repo.
 
+Check out [this link](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) from the official GitHub documentation about syncing your fork with the upstream (this) repository.
+
 ## Assignments / doc folder
 
 The ```doc``` folder will contain markdown files for every assignment.
