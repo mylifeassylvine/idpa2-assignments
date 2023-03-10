@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Here, I used the Google API to determine the temperature of the entered city. -->
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <!-- <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        } -->
+    </style>
+</head>
+
+<!-- Add CSS weather app -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #96d3ff;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+
+    h1 {
+        font-size: 40px;
+        color: white;
+        text-align: center;
+    }
+
+    .container-fluid {
+        width: 400px;
+        margin: 60px auto;
+        padding: 10px;
+    }
+
+    .inputs {
+        padding: 2rem 0 2rem 0;
+        text-align: center;
+        justify-content: center;
+        background: white;
+    }
+
+    .inputs input[type="text"] {
+        height: 4rem;
+        width: 20rem;
+        background: #212121;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 10px;
+        border: none;
+        background-color: transparent;
+        border: 2px solid #FFFAE0;
+        border-radius: 2px;
+        margin-right: 4px;
+    }
+
+    .inputs input[type="submit"] {
+        height: 3rem;
+        width: 6rem;
+        background: #FFFAE0;
+        font-weight: bold;
+        color: #96d3ff;
+        font-size: 1rem;
+        margin-top: 20px;
+        border: none;
+        border-radius: 2px;
+    }
+
+    .display {
+        text-align: center;
+        width: 400px;
+        color: #16a864;
+    }
+
+    .wrapper {
+        margin: 0 9rem;
+        background-color: white;
+        height: 45vh;
+        margin: 50px auto;
+        border-radius: 2px;
+    }
+
+    .wrapper h2 {
+        padding: 5px 0;
+        text-align: center;
+        background: white;
+        color: #96d3ff;
+        font-family: sans-serif;
+    }
+
+    .wrapper p {
+        margin: 20px 50px;
+        margin-right: 20px;
+        text-align: left;
+        color: #04214c;
+        font-size: 23px;
+    }
+
+    .wrapper h2 span {
+        font-size: 26px;
+        color: #9beefb;
+    }
+
+    .wrapper p span {
+        color: #f4780d;
+        font-size: 25px;
+    }
+</style>
+
+<body>
+    <!-- Add HTML weather app -->
+    <div class="container-fluid">
+        <section class="main">
+            <div class="title">
+                <h1>Weather App</h1>
+            </div>
+            <section class="inputs">
+                <input type="text" placeholder="Enter any city..." id="cityinput">
+                <input type="submit" value="Submit" id="add">
+                <button placeholder="submit" id="add"></button>
+            </section>
+
+            <section class="display">
+                <div class="wrapper">
+                    <h2 id="cityoutput"></h2>
+                    <p id="description"></p>
+                    <p id="temp"></p>
+                    <p id="wind"></p>
+                    <p id='map'></p>
+                </div>
+            </section>
+        </section>
+
+    </div>
+
+    <script>
+        var inputval = document.querySelector('#cityinput')
+        var btn = document.querySelector('#add');
+        var city = document.querySelector('#cityoutput')
+        var descrip = document.querySelector('#description')
+        var temp = document.querySelector('#temp')
+        var wind = document.querySelector('#wind')
+        apik = "3045dd712ffe6e702e3245525ac7fa38"
+        function convertion(val) {
+            return (val - 273).toFixed(2)
+        }
+
+        btn.addEventListener('click', function () {
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputval.value + '&appid=' + apik)
+                .then(res => res.json())
+
+
+                .then(data => {
+                    var nameval = data['name']
+                    var descrip = data['weather']['0']['description']
+                    var tempature = data['main']['temp']
+                    var wndspd = data['wind']['speed']
+                    city.innerHTML = `Weather of <span>${nameval}<span>`
+                    temp.innerHTML = `Temperature: <span>${convertion(tempature)} C</span>`
+                    description.innerHTML = `Sky Conditions: <span>${descrip}<span>`
+                    wind.innerHTML = `Wind Speed: <span>${wndspd} km/h<span>`
+
+                })
+
+                .catch(err => alert('You entered Wrong city name'))
+        })
+    </script>
+
+    <!--  ADD JAVASCRIPT FETCH METHOD FOR GOOGLE MAPS but I get error when I want to return aerisapi
+    <script>
+
+        var gmap;
+        function initMap() {
+            gmap = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 44.96, lng: -93.27 },
+                zoom: 5
+            });
+
+            var radar = new google.maps.ImageMapType({
+                getTileUrl: function (coord, zoom) {
+                    return ['https://maps.aerisapi.com/[client_id]_[client_key]/radar/',
+                        zoom, '/', coord.x, '/', coord.y, '/current.png'].join('');
+                },
+                tileSize: new google.maps.Size(256, 256)
+            });
+            gmap.overlayMapTypes.push(radar);
+
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&callback=initMap" async defer></script>
+    -->
+
+
+</body>
+
+</html>
